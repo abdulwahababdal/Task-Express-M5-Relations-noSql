@@ -5,6 +5,7 @@ const {
   postsGet,
   postsUpdate,
   postsDelete,
+  tagAdd,
 } = require("./posts.controllers");
 
 router.param("postId", async (req, res, next, postId) => {
@@ -19,6 +20,7 @@ router.param("postId", async (req, res, next, postId) => {
   }
 });
 
+router.post("/:postId/tag", tagAdd);
 router.get("/", postsGet);
 
 router.delete("/:postId", postsDelete);

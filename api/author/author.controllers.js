@@ -29,8 +29,9 @@ exports.authorsDelete = async (req, res, next) => {
 };
 exports.postsCreate = async (req, res, next) => {
   try {
+    req.body.authorId = req.author.id;
     const newPost = await Post.create(req.body);
-    await Author.findByIdAndUpdate(req.params.authorId, {
+    await Author.findByIdAndUpdate(req.author.id, {
       $push: { posts: newPost._id },
     });
     res.status(201).json(newPost);
@@ -51,6 +52,7 @@ exports.authorsUpdate = async (req, res, next) => {
 exports.authorsGet = async (req, res, next) => {
   try {
     const authors = await Author.find({}, "-createdAt -updatedAt").populate(
+      `authorId`,
       "posts"
     );
     res.json(authors);
