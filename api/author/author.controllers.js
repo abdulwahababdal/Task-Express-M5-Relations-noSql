@@ -53,7 +53,6 @@ exports.authorsUpdate = async (req, res, next) => {
 exports.authorsGet = async (req, res, next) => {
   try {
     const authors = await Author.find({}, "-createdAt -updatedAt").populate(
-      `authorId`,
       "posts"
     );
     res.json(authors);
