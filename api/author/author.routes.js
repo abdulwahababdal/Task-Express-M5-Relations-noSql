@@ -25,8 +25,8 @@ router.get("/", authorsGet);
 router.post("/", authorsCreate);
 router.post("/:authorId/posts", postsCreate);
 
-router.delete("/:authorId", authorsDelete);
+router.delete("/:postId", authorsDelete);
 
-router.put("/:authorId", authorsUpdate);
+router.put("/:postId", authorsUpdate);
 
 module.exports = router;

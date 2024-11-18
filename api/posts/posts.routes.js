@@ -20,8 +20,9 @@ router.param("postId", async (req, res, next, postId) => {
   }
 });
 
-router.post("/:postId/tag", tagAdd);
 router.get("/", postsGet);
+
+router.post("/:postId/tag", tagAdd);
 
 router.delete("/:postId", postsDelete);
 

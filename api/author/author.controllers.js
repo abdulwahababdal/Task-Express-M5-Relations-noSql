@@ -28,8 +28,9 @@ exports.authorsDelete = async (req, res, next) => {
   }
 };
 exports.postsCreate = async (req, res, next) => {
+  console.log("I am here");
   try {
-    req.body.authorId = req.author.id;
+    req.body.author = req.author.id;
     const newPost = await Post.create(req.body);
     await Author.findByIdAndUpdate(req.author.id, {
       $push: { posts: newPost._id },
